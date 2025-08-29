@@ -27,6 +27,15 @@ jobs:
         env:
           PUBLIC_GA_TRACKING_ID: ${{ vars.PUBLIC_GA_TRACKING_ID }}
 
+      - name: Debug - Check dist contents
+        run: |
+          echo "=== Dist directory contents ==="
+          ls -la dist/
+          echo "=== Favicon files check ==="
+          ls -la dist/favicon* || echo "No favicon files found in dist"
+          echo "=== Public directory check ==="
+          ls -la public/favicon* || echo "No favicon files found in public"
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
