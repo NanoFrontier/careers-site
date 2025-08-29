@@ -26,8 +26,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
-        run: npm run build
+      - name: Clean and Build
+        run: |
+          rm -rf dist
+          npm run build
+          echo "=== Build complete, checking dist contents ==="
+          ls -la dist/
+          echo "=== Checking for favicon files ==="
+          ls -la dist/favicon* || echo "No favicon files found"
         env:
           PUBLIC_GA_TRACKING_ID: ${{ vars.PUBLIC_GA_TRACKING_ID }}
 
@@ -38,5 +44,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           cname: careers.nanofrontier.jp
+          force_orphan: true
+          keep_files: false
 
 
