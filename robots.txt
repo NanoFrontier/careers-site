@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Sitemap: https://careers.nanofrontier.jp/sitemap-index.xml
+
+
