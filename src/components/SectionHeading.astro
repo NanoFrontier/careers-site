@@ -1,0 +1,62 @@
+---
+const { title, subtitle } = Astro.props as { title: string; subtitle?: string };
+---
+<div class="section-heading">
+  <h2 class="section-title">{title}</h2>
+  {subtitle && <p class="muted section-subtitle">{subtitle}</p>}
+</div>
+
+<style>
+  .section-heading {
+    margin: 0 0 var(--nf-space-4);
+    padding-bottom: var(--nf-space-3);
+    border-bottom: 1px solid var(--nf-color-border);
+  }
+
+  .section-title {
+    margin: 0;
+    color: var(--nf-color-brand);
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
+
+  .section-subtitle {
+    margin: 0.25rem 0 0;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  /* レスポンシブ対応 */
+  @media (max-width: 768px) {
+    .section-heading {
+      margin: 0 0 var(--nf-space-3);
+      padding-bottom: var(--nf-space-2);
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .section-heading {
+      margin: 0 0 var(--nf-space-2);
+      padding-bottom: var(--nf-space-2);
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+    }
+  }
+</style>
+
+

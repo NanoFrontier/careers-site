@@ -1,0 +1,96 @@
+---
+---
+<footer class="surface footer">
+  <div class="container footer-container">
+    <p class="muted footer-copyright">&copy; {new Date().getFullYear()} NanoFrontier, Inc.</p>
+    <div class="footer-links">
+      <p class="footer-link"><a href="/privacy">プライバシーポリシー</a></p>
+      <p class="footer-link"><a href="https://nanofrontier.jp">Corporate site</a></p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    margin-top: var(--nf-space-12);
+    border-top: 1px solid var(--nf-color-border);
+  }
+
+  .footer-container {
+    padding: var(--nf-space-8) 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--nf-space-4);
+  }
+
+  .footer-copyright {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: var(--nf-space-4);
+    align-items: center;
+  }
+
+  .footer-link {
+    margin: 0;
+  }
+
+  .footer-link a {
+    color: var(--nf-color-brand);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: opacity 0.2s;
+  }
+
+  .footer-link a:hover {
+    opacity: 0.8;
+  }
+
+  /* レスポンシブ対応 */
+  @media (max-width: 768px) {
+    .footer {
+      margin-top: var(--nf-space-8);
+    }
+
+    .footer-container {
+      padding: var(--nf-space-6) 0;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--nf-space-3);
+    }
+
+    .footer-links {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--nf-space-2);
+    }
+
+    .footer-copyright,
+    .footer-link a {
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer {
+      margin-top: var(--nf-space-6);
+    }
+
+    .footer-container {
+      padding: var(--nf-space-4) 0;
+      gap: var(--nf-space-2);
+    }
+
+    .footer-copyright,
+    .footer-link a {
+      font-size: 0.8rem;
+    }
+  }
+</style>
+
+

@@ -1,0 +1,355 @@
+---
+import Layout from "../layouts/DefaultLayout.astro";
+import Hero from "../components/Hero.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import { getCollection } from "astro:content";
+const people = (await getCollection('people')).sort((a,b)=> (a.data.date < b.data.date ? 1 : -1));
+const title = "NanoFrontier Careers";
+const description = "募集職種・カルチャー・働き方";
+const canonical = "https://careers.nanofrontier.jp";
+---
+<Layout {title} {description} {canonical}>
+  <Hero title="採用情報" subtitle="NanoFrontierの募集職種・カルチャー" primaryHref="/jobs" primaryLabel="募集職種を見る" />
+
+  {/* About (standalone, centered) */}
+  <section class="container section">
+    <div class="about-content">
+      <p>NanoFrontierは、ナノ粒子化・分散・プロセス設計をコアに、電子材料からライフサイエンスまで産業実装を進めるスタートアップです。</p><p>独自の製造アプローチでコスト・リードタイム・環境負荷を同時に最適化し、研究開発から量産移行まで一気通貫で伴走。</p><p>"ナノから世界の標準をつくる"ことに挑戦しています。</p>
+    </div>
+  </section>
+
+  {/* Hiring message */}
+  <section class="container section">
+    <SectionHeading title="一緒に働く仲間を探しています"/>
+    <div class="item-row">
+      <p>創業以来、最新の知見を取り入れながら研究と実装を往復させ、パートナー企業・研究機関と共にプロジェクトを推進してきました。<br>現在、開発案件・引き合いの拡大に伴い、事業を加速する仲間を募集しています。</p>
+    </div>
+  </section>
+
+  {/* Flow */}
+  <section id="flow" class="container section">
+    <SectionHeading title="採用までの流れ" />
+    <div class="item-row">
+      <ol class="flow-list">
+        <li>カジュアル面談（30–45分／オンライン）… 相互理解。期待値・働き方・進め方をざっくばらんに</li>
+        <li>職種面談・技術ディスカッション（60分〜／オンライン or オンサイト）… これまでの成果・思考プロセス・ケース質疑</li>
+        <li>現場体験（任意）… ラボ見学／1日インターン／簡易課題などで進め方とカルチャーを確認</li>
+        <li>最終面談・条件調整（30分〜）… ミッション・ロール・働き方のすり合わせ</li>
+        <li>オファー… 原則3営業日以内に結果をご連絡します</li>
+      </ol>
+      <p class="muted flow-note">※ 進行に応じてステップの省略・順序変更あり。日程は柔軟に調整します／応募〜オファーまで2–3週間目安。</p>
+    </div>
+  </section>
+
+  {/* People (hidden if 0 entries) */}
+  {people.length > 0 && (
+    <section id="people" class="container section">
+      <SectionHeading title="メンバーの声" />
+      <div class="people-grid">
+        {people.map(p => (
+          <a href={`/people/${p.slug}`} class="people-card">
+            {p.data.hero && <img src={p.data.hero} alt={p.data.title} class="people-image" />}
+            {p.data.quote && <p class="people-quote">{p.data.quote}</p>}
+            <p class="muted people-date">{p.data.joined || p.data.date}</p>
+            <h3 class="people-role">{p.data.role || p.data.department}</h3>
+            <p class="people-name">{p.data.name || p.slug}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {/* Culture / Welfare */}
+  <section id="culture" class="container section">
+    <SectionHeading title="働く環境" subtitle="カルチャーと福利厚生" />
+    <div class="culture-content">
+      <div class="item-row">
+        <h3>カルチャー（働き方の前提）</h3>
+        <ul class="culture-list">
+          <li>仮説→検証→学習の短サイクル。数値とドキュメントで意思決定</li>
+          <li>オープンなコミュニケーションとフィードバック</li>
+          <li>安全・品質・スピードのバランスを重視</li>
+          <li>顧客・社会実装から逆算して研究開発に接続</li>
+        </ul>
+      </div>
+      <div class="item-row">
+        <h3>ワークスタイル</h3>
+        <ul class="culture-list">
+          <li>ハイブリッド（職種により出社中心）／フルフレックス</li>
+          <li>小さなチームで意思決定が速い。裁量大</li>
+          <li>仙台（主拠点）・東京（連携拠点）での共同研究／PoCを推進</li>
+        </ul>
+      </div>
+      <div class="item-row">
+        <h3>主な福利厚生制度（例）</h3>
+        <ul class="culture-list">
+          <li>社会保険完備、育休産休</li>
+          <li>ストックオプション付与</li>
+          <li>学習支援（技術書・資格・カンファレンス等）</li>
+          <li>健康支援（マッサージ・ジム等）</li>
+          <li>住居・移住支援（条件あり）</li>
+        </ul>
+        <p class="muted culture-note">※ 詳細は募集要項・雇用区分により異なります。</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+{/* Floating CTA Button */}
+<div class="floating-cta">
+  <a href="/jobs" class="btn cta-button">募集職種を見る</a>
+</div>
+
+<style>
+  .about-content {
+    line-height: 1.9;
+    font-size: 1.1rem;
+  }
+
+  .flow-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    line-height: 1.8;
+  }
+
+  .flow-note {
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+  }
+
+  .people-grid {
+    display: grid;
+    gap: var(--nf-space-8);
+    grid-template-columns: repeat(2, 1fr);
+    align-items: start;
+  }
+
+  .people-card {
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease;
+  }
+
+  .people-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .people-image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--nf-radius-lg);
+    object-fit: cover;
+  }
+
+  .people-quote {
+    margin: 0.75rem 0 0;
+    line-height: 1.8;
+  }
+
+  .people-date {
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+  }
+
+  .people-role {
+    margin: 0.25rem 0 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .people-name {
+    margin: 0.25rem 0 0;
+    font-size: 0.9rem;
+  }
+
+  .culture-content {
+    line-height: 1.9;
+  }
+
+  .culture-list {
+    margin: 0.25rem 0 0;
+    padding-left: 1.1rem;
+    line-height: 1.7;
+  }
+
+  .culture-note {
+    margin: 0.25rem 0 0;
+    font-size: 0.9rem;
+  }
+
+  .floating-cta {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+  }
+
+  .cta-button {
+    font-size: 1.3rem;
+    padding: 1rem 2rem;
+    display: inline-block;
+    background: linear-gradient(135deg, var(--nf-color-brand) 0%, #0d9488 100%);
+    color: white;
+    border: none;
+    border-radius: 2rem;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(4, 102, 108, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(4, 102, 108, 0.4);
+  }
+
+  /* レスポンシブ対応 */
+  @media (max-width: 1024px) {
+    .people-grid {
+      gap: var(--nf-space-6);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .about-content {
+      font-size: 1rem;
+      line-height: 1.8;
+      max-width: 100%;
+    }
+
+    .people-grid {
+      grid-template-columns: 1fr;
+      gap: var(--nf-space-6);
+    }
+
+    .flow-list {
+      padding-left: 1rem;
+      font-size: 0.95rem;
+      max-width: 100%;
+    }
+
+    .culture-list {
+      padding-left: 1rem;
+      font-size: 0.95rem;
+      max-width: 100%;
+    }
+
+    .floating-cta {
+      bottom: 1.5rem;
+    }
+
+    .cta-button {
+      font-size: 1.1rem;
+      padding: 0.875rem 1.75rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .about-content {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 100%;
+    }
+
+    .flow-list {
+      padding-left: 0.875rem;
+      font-size: 0.9rem;
+      max-width: 100%;
+    }
+
+    .culture-list {
+      padding-left: 0.875rem;
+      font-size: 0.9rem;
+      max-width: 100%;
+    }
+
+    .floating-cta {
+      bottom: 1.25rem;
+      left: 1rem;
+      right: 1rem;
+      transform: none;
+    }
+
+    .cta-button {
+      font-size: 1rem;
+      padding: 0.75rem 1.5rem;
+      width: 100%;
+      max-width: none;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .about-content {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      max-width: 100%;
+    }
+
+    .flow-list {
+      padding-left: 0.75rem;
+      font-size: 0.85rem;
+      max-width: 100%;
+    }
+
+    .culture-list {
+      padding-left: 0.75rem;
+      font-size: 0.85rem;
+      max-width: 100%;
+    }
+
+    .floating-cta {
+      bottom: 1rem;
+      left: 0.75rem;
+      right: 0.75rem;
+      transform: none;
+    }
+
+    .cta-button {
+      font-size: 0.95rem;
+      padding: 0.75rem 1.25rem;
+      width: 100%;
+      max-width: none;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .about-content {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      max-width: 100%;
+    }
+
+    .flow-list {
+      padding-left: 0.5rem;
+      font-size: 0.8rem;
+      max-width: 100%;
+    }
+
+    .culture-list {
+      padding-left: 0.5rem;
+      font-size: 0.8rem;
+      max-width: 100%;
+    }
+
+    .floating-cta {
+      bottom: 0.75rem;
+      left: 0.5rem;
+      right: 0.5rem;
+      transform: none;
+    }
+
+    .cta-button {
+      font-size: 0.9rem;
+      padding: 0.625rem 1rem;
+      width: 100%;
+      max-width: none;
+      text-align: center;
+    }
+  }
+</style>
+
+

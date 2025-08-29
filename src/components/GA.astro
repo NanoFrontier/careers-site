@@ -1,0 +1,33 @@
+---
+const { id } = Astro.props;
+const gaId = id || import.meta.env.PUBLIC_GA_TRACKING_ID || 'G-8D0QRH12F3';
+
+const init = `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config','${gaId}',{ 
+  linker:{ domains:['nanofrontier.jp','careers.nanofrontier.jp'] },
+  anonymize_ip: true,
+  cookie_flags: 'SameSite=None;Secure'
+});
+
+// カスタムイベント関数
+window.trackJobView = function(jobTitle, jobCategory) {
+  gtag('event', 'view_job', {
+    'job_title': jobTitle,
+    'job_category': jobCategory
+  });
+};
+
+window.trackJobApply = function(jobTitle, jobCategory, method) {
+  gtag('event', 'apply_job', {
+    'job_title': jobTitle,
+    'job_category': jobCategory,
+    'application_method': method
+  });
+};`;
+---
+<script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+<script is:inline set:html={init}></script>
+
+

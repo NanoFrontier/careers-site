@@ -1,0 +1,279 @@
+---
+import Layout from "../../layouts/DefaultLayout.astro";
+import Hero from "../../components/Hero.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+const title = "NanoFrontier Careers";
+const description = "Open roles, culture, and ways of working";
+const canonical = "https://careers.nanofrontier.jp/en";
+---
+<Layout {title} {description} {canonical}>
+  <Hero title="Recruit" subtitle="Open roles and culture at NanoFrontier" primaryHref="/en/jobs" primaryLabel="See open roles" />
+
+  {/* About (standalone) */}
+  <section class="container section">
+    <div class="about-content">
+      <p>NanoFrontier is a R&amp;D driven startup focusing on nanoparticle fabrication, dispersion, and process design. We optimize cost, lead time, and environmental footprint with our unique manufacturing approach, supporting customers end-to-end from research to scale-up — aiming to create global standards from nano.</p>
+    </div>
+  </section>
+
+  {/* Hiring message */}
+  <section class="container section">
+    <SectionHeading title="We are hiring" />
+    <div class="item-row">
+      <p>We iterate between research and implementation with partners in academia and industry. As projects and PoCs grow, we are looking for teammates to accelerate our mission.</p>
+    </div>
+  </section>
+
+  {/* Work style & Benefits */}
+  <section id="culture" class="container section">
+    <SectionHeading title="Work Environment" subtitle="Culture and Benefits" />
+    <div class="culture-content">
+      <div class="item-row">
+        <h3>Culture</h3>
+        <ul class="culture-list">
+          <li>Short hypothesis–test–learn cycles with docs and numbers</li>
+          <li>Open communication and constructive feedback</li>
+          <li>Balance of safety, quality, and speed</li>
+          <li>Start from customer impact and connect to R&amp;D</li>
+        </ul>
+      </div>
+      <div class="item-row">
+        <h3>Workstyle</h3>
+        <ul class="culture-list">
+          <li>Hybrid / full-flex (on-site depending on role)</li>
+          <li>Small team, fast decision making, high ownership</li>
+          <li>PoCs and collaborations in Sendai (HQ) and Tokyo</li>
+        </ul>
+      </div>
+      <div class="item-row">
+        <h3>Key Benefits (examples)</h3>
+        <ul class="culture-list">
+          <li>Social insurance, parental leave</li>
+          <li>Stock options</li>
+          <li>Learning support (books, certifications, conferences)</li>
+          <li>Health support (massage, gym, etc.)</li>
+          <li>Housing / relocation support (conditions apply)</li>
+        </ul>
+        <p class="muted culture-note">* Details vary by role and contract type.</p>
+      </div>
+    </div>
+  </section>
+
+  {/* Hiring process */}
+  <section id="flow" class="container section">
+    <SectionHeading title="Hiring Process" />
+    <div class="item-row">
+      <ol class="flow-list">
+        <li>Casual chat (30–45min, online) – mutual understanding on expectations and ways of working</li>
+        <li>Role interview / technical discussion (60min+, online/on-site) – walk-through of past work and case Q&amp;A</li>
+        <li>On-site experience (optional) – lab tour / one-day internship / light assignment</li>
+        <li>Final interview &amp; terms alignment</li>
+        <li>Offer – typically within 3 business days</li>
+      </ol>
+      <p class="muted flow-note">* Steps may be rearranged or skipped. Typical timeline: 2–3 weeks from application to offer.</p>
+    </div>
+  </section>
+</Layout>
+
+{/* Floating CTA Button */}
+<div class="floating-cta">
+  <a class="btn cta-button" href="/en/jobs">See open roles</a>
+</div>
+
+<style>
+  .about-content {
+    line-height: 1.9;
+    font-size: 1.1rem;
+  }
+
+  .flow-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    line-height: 1.8;
+  }
+
+  .flow-note {
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+  }
+
+  .culture-content {
+    line-height: 1.9;
+  }
+
+  .culture-list {
+    margin: 0.25rem 0 0;
+    padding-left: 1.1rem;
+    line-height: 1.7;
+  }
+
+  .culture-note {
+    margin: 0.25rem 0 0;
+    font-size: 0.9rem;
+  }
+
+  .floating-cta {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+  }
+
+  .cta-button {
+    font-size: 1.125rem;
+    padding: 1rem 2rem;
+    display: inline-block;
+    background: linear-gradient(135deg, var(--nf-color-brand) 0%, #0d9488 100%);
+    color: white;
+    border: none;
+    border-radius: 2rem;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(4, 102, 108, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(4, 102, 108, 0.4);
+  }
+
+  /* レスポンシブ対応 */
+  @media (max-width: 768px) {
+    .about-content {
+      font-size: 1rem;
+      line-height: 1.8;
+      max-width: 100%;
+    }
+
+    .flow-list {
+      padding-left: 1rem;
+      font-size: 0.95rem;
+      max-width: 100%;
+    }
+
+    .culture-list {
+      padding-left: 1rem;
+      font-size: 0.95rem;
+      max-width: 100%;
+    }
+
+    .floating-cta {
+      bottom: 1.5rem;
+    }
+
+    .cta-button {
+      font-size: 1rem;
+      padding: 0.875rem 1.75rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .about-content {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 100%;
+    }
+
+    .flow-list {
+      padding-left: 0.875rem;
+      font-size: 0.9rem;
+      max-width: 100%;
+    }
+
+    .culture-list {
+      padding-left: 0.875rem;
+      font-size: 0.9rem;
+      max-width: 100%;
+    }
+
+    .floating-cta {
+      bottom: 1.25rem;
+      left: 1rem;
+      right: 1rem;
+      transform: none;
+    }
+
+    .cta-button {
+      font-size: 0.95rem;
+      padding: 0.75rem 1.5rem;
+      width: 100%;
+      max-width: none;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .about-content {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      max-width: 100%;
+    }
+
+    .flow-list {
+      padding-left: 0.75rem;
+      font-size: 0.85rem;
+      max-width: 100%;
+    }
+
+    .culture-list {
+      padding-left: 0.75rem;
+      font-size: 0.85rem;
+      max-width: 100%;
+    }
+
+    .floating-cta {
+      bottom: 1rem;
+      left: 0.75rem;
+      right: 0.75rem;
+      transform: none;
+    }
+
+    .cta-button {
+      font-size: 0.9rem;
+      padding: 0.75rem 1.25rem;
+      width: 100%;
+      max-width: none;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .about-content {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      max-width: 100%;
+    }
+
+    .flow-list {
+      padding-left: 0.5rem;
+      font-size: 0.8rem;
+      max-width: 100%;
+    }
+
+    .culture-list {
+      padding-left: 0.5rem;
+      font-size: 0.8rem;
+      max-width: 100%;
+    }
+
+    .floating-cta {
+      bottom: 0.75rem;
+      left: 0.5rem;
+      right: 0.5rem;
+      transform: none;
+    }
+
+    .cta-button {
+      font-size: 0.85rem;
+      padding: 0.625rem 1rem;
+      width: 100%;
+      max-width: none;
+      text-align: center;
+    }
+  }
+</style>
+
+

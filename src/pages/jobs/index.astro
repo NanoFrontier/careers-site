@@ -1,0 +1,147 @@
+---
+import Layout from "../../layouts/DefaultLayout.astro";
+import { getCollection } from "astro:content";
+import JobRow from "../../components/JobRow.astro";
+import Hero from "../../components/Hero.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+const allJobs = await getCollection('jobs');
+const jobs = allJobs.filter(j => j.id.startsWith('ja/')).sort((a,b)=> (a.data.datePosted < b.data.datePosted ? 1 : -1));
+---
+<Layout title="募集一覧 | NanoFrontier" description="現在募集中の職種" canonical="https://careers.nanofrontier.jp/jobs">
+  <Hero title="募集職種一覧" subtitle="部署別に募集中のポジションを掲載しています。" />
+  <section class="container jobs-section">
+    <SectionHeading title="すべての募集" />
+    <div class="filter-buttons">
+      {['All','R&D','Engineering','Business','Sales','Corporate'].map(d => (
+        <button class={`filter-btn ${d==='All' ? 'active' : ''}`} data-filter={d}>{d}</button>
+      ))}
+    </div>
+    <div id="jobs-list" class="jobs-list">
+      {jobs.map(j => <JobRow title={j.data.title} location={j.data.location} department={j.data.department} href={`/jobs/${j.id.replace('ja/', '').replace('.mdx', '')}`} lang="ja" />)}
+    </div>
+    <script>
+      const list = document.getElementById('jobs-list');
+      const buttons = Array.from(document.querySelectorAll('button[data-filter]'));
+      const rows = Array.from(document.querySelectorAll('#jobs-list .job-row'));
+      const normalize = (s: string | null | undefined): string => (s||'').toString().trim().toLowerCase();
+      const applyFilter = (raw: string): void => {
+        if (!list) return;
+        const v = normalize(raw);
+        rows.forEach((el)=>{
+          const row = el as HTMLElement;
+          const dept = normalize(row.getAttribute('data-dept') || 'Other');
+          row.style.display = (v==='' || v==='all' || v===dept) ? '' : 'none';
+        });
+      };
+      if (list) {
+        buttons.forEach(btn=>btn.addEventListener('click',()=>{
+          const v = btn.getAttribute('data-filter') || 'All';
+          buttons.forEach(b=>b.classList.remove('active'));
+          btn.classList.add('active');
+          applyFilter(v);
+        }));
+        const initial = document.querySelector('button[data-filter].active')?.getAttribute('data-filter') || 'All';
+        applyFilter(initial);
+      }
+    </script>
+  </section>
+</Layout>
+
+<style>
+  .jobs-section {
+    padding: var(--nf-space-8) 0;
+  }
+
+  .filter-buttons {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin: 0 0 var(--nf-space-6);
+    justify-content: center;
+  }
+
+  .filter-btn {
+    background: none;
+    border: none;
+    color: var(--nf-color-muted);
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.2s ease;
+  }
+
+  .filter-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--nf-color-brand);
+    transition: width 0.2s ease;
+  }
+
+  .filter-btn:hover {
+    color: var(--nf-color-brand);
+  }
+
+  .filter-btn:hover::after {
+    width: 100%;
+  }
+
+  .filter-btn.active {
+    color: var(--nf-color-brand);
+    font-weight: 600;
+  }
+
+  .filter-btn.active::after {
+    width: 100%;
+  }
+
+  .jobs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* レスポンシブ対応 */
+  @media (max-width: 768px) {
+    .jobs-section {
+      padding: var(--nf-space-6) 0;
+    }
+
+    .filter-buttons {
+      gap: 1.5rem;
+      margin: 0 0 var(--nf-space-4);
+    }
+
+    .filter-btn {
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .jobs-section {
+      padding: var(--nf-space-4) 0;
+    }
+
+    .filter-buttons {
+      gap: 1rem;
+      margin: 0 0 var(--nf-space-3);
+    }
+
+    .filter-btn {
+      font-size: 0.9rem;
+    }
+
+    .jobs-list {
+      gap: 0.75rem;
+    }
+  }
+</style>
+
+

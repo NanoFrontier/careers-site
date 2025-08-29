@@ -1,0 +1,12 @@
+# CODEOWNERS
+
+# Default: Web/Eng team
+* @NanoFrontier/web-eng
+
+# HR owns job descriptions
+/src/content/jobs/** @NanoFrontier/hr @NanoFrontier/recruiting
+
+# Comms owns stories
+/src/content/stories/** @NanoFrontier/comms
+
+

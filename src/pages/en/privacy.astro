@@ -1,0 +1,177 @@
+---
+import Layout from '../../layouts/DefaultLayout.astro';
+---
+
+<Layout 
+  title="Privacy Policy - NanoFrontier"
+  description="Privacy policy for NanoFrontier careers site. Learn how we handle your personal information."
+  canonical="https://careers.nanofrontier.jp/en/privacy"
+>
+  <section class="privacy-policy-section">
+    <div class="container">
+      <h1 class="page-title">Privacy Policy</h1>
+      
+      <div class="policy-content">
+        <h2>Handling of Personal Information</h2>
+        <p>NanoFrontier Co., Ltd. (hereinafter "the Company") recognizes the importance of personal information protection and handles it appropriately in accordance with the following privacy policy.</p>
+
+        <h3>1. Collection of Personal Information</h3>
+        <p>In our recruitment activities, we may collect the following personal information:</p>
+        <ul>
+          <li>Name, address, phone number, email address</li>
+          <li>Educational background, work history, qualifications and other career information</li>
+          <li>Skills and experience related to the position you are applying for</li>
+        </ul>
+
+        <h3>2. Purpose of Use of Personal Information</h3>
+        <p>We use collected personal information only for the following purposes:</p>
+        <ul>
+          <li>Implementation of recruitment selection</li>
+          <li>Communication and notification regarding recruitment</li>
+          <li>Human resource management after hiring</li>
+        </ul>
+
+        <h3>3. Use of Google Analytics</h3>
+        <p>This site uses Google Analytics for the purpose of service improvement. Google Analytics analyzes user behavior using cookies, but does not include personally identifiable information.</p>
+        <p>If you do not wish to have information collected by Google Analytics, you can disable cookies in your browser settings or use the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a>.</p>
+
+        <h3>4. Provision of Personal Information to Third Parties</h3>
+        <p>We will not provide personal information to third parties without your consent, except as required by law.</p>
+
+        <h3>5. Management of Personal Information</h3>
+        <p>We maintain the accuracy of personal information and take appropriate security measures to prevent unauthorized access, leakage, loss, damage, etc.</p>
+
+        <h3>6. Contact Information</h3>
+        <p>For inquiries regarding the handling of personal information, please contact:</p>
+        <p>
+          NanoFrontier Co., Ltd.<br>
+          Email: info@nanofrontier.jp
+        </p>
+
+        <h3>7. Changes to Privacy Policy</h3>
+        <p>We may change this privacy policy in response to changes in laws and regulations. The revised privacy policy shall take effect when posted on this site.</p>
+
+        <p class="policy-date">Established: January 1, 2024</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .privacy-policy-section {
+    padding: var(--nf-space-8) 0;
+    background: #fff;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 var(--nf-space-4);
+  }
+
+  .page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--nf-color-primary);
+    text-align: center;
+    margin-bottom: var(--nf-space-8);
+    line-height: 1.2;
+  }
+
+  .policy-content {
+    line-height: 1.7;
+    color: var(--nf-color-fg);
+  }
+
+  .policy-content h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--nf-color-primary);
+    margin: var(--nf-space-6) 0 var(--nf-space-3) 0;
+    border-bottom: 2px solid var(--nf-color-primary);
+    padding-bottom: var(--nf-space-2);
+  }
+
+  .policy-content h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--nf-color-fg);
+    margin: var(--nf-space-5) 0 var(--nf-space-3) 0;
+  }
+
+  .policy-content p {
+    margin-bottom: var(--nf-space-3);
+  }
+
+  .policy-content ul {
+    margin: var(--nf-space-3) 0;
+    padding-left: var(--nf-space-5);
+  }
+
+  .policy-content li {
+    margin-bottom: var(--nf-space-2);
+  }
+
+  .policy-content a {
+    color: var(--nf-color-primary);
+    text-decoration: underline;
+  }
+
+  .policy-content a:hover {
+    color: var(--nf-color-primary-dark);
+  }
+
+  .policy-date {
+    text-align: right;
+    font-style: italic;
+    color: var(--nf-color-muted);
+    margin-top: var(--nf-space-6);
+    border-top: 1px solid var(--nf-color-border);
+    padding-top: var(--nf-space-3);
+  }
+
+  /* レスポンシブ対応 */
+  @media (max-width: 768px) {
+    .privacy-policy-section {
+      padding: var(--nf-space-6) 0;
+    }
+
+    .page-title {
+      font-size: 2rem;
+      margin-bottom: var(--nf-space-6);
+    }
+
+    .policy-content h2 {
+      font-size: 1.3rem;
+    }
+
+    .policy-content h3 {
+      font-size: 1.1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 0 var(--nf-space-3);
+    }
+
+    .page-title {
+      font-size: 1.75rem;
+      margin-bottom: var(--nf-space-5);
+    }
+
+    .policy-content h2 {
+      font-size: 1.2rem;
+      margin: var(--nf-space-5) 0 var(--nf-space-2) 0;
+    }
+
+    .policy-content h3 {
+      font-size: 1rem;
+      margin: var(--nf-space-4) 0 var(--nf-space-2) 0;
+    }
+
+    .policy-content ul {
+      padding-left: var(--nf-space-4);
+    }
+  }
+</style>

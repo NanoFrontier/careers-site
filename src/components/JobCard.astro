@@ -1,0 +1,59 @@
+---
+const { title, location, href, department } = Astro.props as {
+  title: string; location: string; href: string; department?: string;
+};
+---
+<a class="card job-card" href={href} data-dept={department}>
+  <h3 class="job-card-title">{title}</h3>
+  <p class="muted job-card-meta">{location}{department && ` ・ ${department}`}</p>
+</a>
+
+<style>
+  .job-card {
+    display: block;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .job-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--nf-shadow-md);
+  }
+
+  .job-card-title {
+    margin: 0 0 var(--nf-space-2);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--nf-color-fg);
+    line-height: 1.4;
+  }
+
+  .job-card-meta {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  /* レスポンシブ対応 */
+  @media (max-width: 768px) {
+    .job-card-title {
+      font-size: 1rem;
+    }
+
+    .job-card-meta {
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .job-card-title {
+      font-size: 0.95rem;
+    }
+
+    .job-card-meta {
+      font-size: 0.8rem;
+    }
+  }
+</style>
+
+

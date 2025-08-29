@@ -1,0 +1,19 @@
+---
+const { title, description, canonical, jsonLd, noindex=false } = Astro.props;
+---
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {title && <title>{title}</title>}
+  {description && <meta name="description" content={description} />}
+  {canonical && <link rel="canonical" href={canonical} />}
+  {noindex && <meta name="robots" content="noindex,follow" />}
+  {title && <meta property="og:title" content={title} />}
+  {description && <meta property="og:description" content={description} />}
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical || Astro.url.href} />
+  {jsonLd && <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>}
+  <slot />
+</head>
+
+

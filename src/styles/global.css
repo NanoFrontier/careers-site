@@ -1,0 +1,285 @@
+@import "./tokens.css";
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--nf-font-sans);background:var(--nf-color-bg);color:var(--nf-color-fg)}
+a{color:var(--nf-color-brand);text-decoration:none}
+
+/* 基本コンテナ設定 - 絶対に左右余白を保証 */
+.container{
+  max-width:var(--nf-container);
+  margin:0 auto;
+  padding-left: max(var(--nf-space-4), 4vw, 16px) !important;
+  padding-right: max(var(--nf-space-4), 4vw, 16px) !important;
+  padding-top: 0;
+  padding-bottom: 0;
+  box-sizing: border-box;
+}
+.container-full{
+  width:100%;
+  max-width:none;
+  margin:0;
+  padding-left: max(var(--nf-space-4), 4vw, 16px) !important;
+  padding-right: max(var(--nf-space-4), 4vw, 16px) !important;
+  padding-top: 0;
+  padding-bottom: 0;
+  box-sizing: border-box;
+}
+.full-bleed{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);width:auto}
+
+/* Elephantech-like sections */
+.heading-hero{font-weight:800;letter-spacing:-.02em}
+.section{padding:var(--nf-space-6) 0}
+.section-tight{padding:var(--nf-space-8) 0}
+.surface{background:var(--nf-color-surface)}
+.card{background:#fff;border:1px solid var(--nf-color-border);border-radius:var(--nf-radius-lg);box-shadow:var(--nf-shadow-sm);padding:var(--nf-space-4)}
+.muted{color:var(--nf-color-muted)}
+.btn{display:inline-block;padding:.625rem .9rem;border-radius:var(--nf-radius-md);background:var(--nf-color-brand);color:#fff}
+.btn-outline{display:inline-block;padding:.5rem .85rem;border-radius:var(--nf-radius-md);border:1px solid var(--nf-color-border);color:var(--nf-color-fg);background:#fff}
+.pill{display:inline-block;padding:.2rem .55rem;border:1px solid var(--nf-color-border);border-radius:999px;background:var(--nf-color-surface);font-size:.85rem}
+.pill.active{background:var(--nf-color-brand);border-color:var(--nf-color-brand);color:#fff}
+.stack>*+*{margin-top:var(--nf-space-2)}
+
+.job-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.25rem;border:1px solid var(--nf-color-border);border-radius:var(--nf-radius-md);background:#fff}
+.job-row+.job-row{margin-top:.75rem}
+.job-title{font-weight:600;color:var(--nf-color-fg)}
+.job-meta{color:var(--nf-color-muted)}
+
+/* Job row hover */
+.job-row{transition:background .15s ease,border-color .15s ease}
+.job-row:hover{background:#f7fafb;border-color:#dbe3e8}
+
+/* Header */
+.header-sticky{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.86);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--nf-color-border)}
+.nav-link{color:var(--nf-color-muted);padding:.25rem 0;border-bottom:2px solid transparent}
+.nav-link:hover{color:var(--nf-color-fg);border-bottom-color:var(--nf-color-border)}
+.nav-link[aria-current="page"]{color:var(--nf-color-fg);border-bottom-color:var(--nf-color-brand)}
+
+/* Language segmented control */
+.segmented{display:inline-flex;align-items:center;padding:2px;border:1px solid var(--nf-color-border);border-radius:999px;background:#fff;gap:2px}
+.segmented a{padding:.35rem .9rem;display:block;color:var(--nf-color-muted);border-radius:999px;line-height:1}
+.segmented a.active{background:var(--nf-color-brand);color:#fff}
+.segmented a:not(.active):hover{background:#f7fafb;color:var(--nf-color-fg)}
+
+/* Stories */
+.gradient-hero{background:linear-gradient(180deg,#d1e6eb 0%, #f0f5f7 60%) !important}
+.story-grid{display:grid;gap:var(--nf-space-3);grid-template-columns:repeat(2,1fr)}
+.story-card h3{margin:0 0 .25rem}
+.story-card p{margin:0}
+
+/* Minimal rows (no card chrome) */
+.item-row{padding:var(--nf-space-4) 0}
+.item-row+ .item-row{margin-top:var(--nf-space-3)}
+.item-row h3{margin:0 0 .25rem;color:var(--nf-color-brand);font-weight:600}
+.item-row p{margin:0}
+
+/* Markdown content (job detail etc.) */
+.md-content{line-height:1.85}
+.md-content h2{margin:1.25rem 0 .5rem;font-size:1.25rem;color:var(--nf-color-brand);font-weight:700}
+.md-content h3{margin:1rem 0 .25rem;font-size:1.05rem;color:var(--nf-color-brand);font-weight:600}
+.md-content p{margin:.5rem 0}
+.md-content ul{margin:.5rem 0 .75rem;padding-left:1.25rem}
+.md-content ol{margin:.5rem 0 .75rem;padding-left:1.25rem}
+.md-content li{margin:.25rem 0}
+.md-content table{border-collapse:collapse;width:100%;margin:.75rem 0}
+.md-content th,.md-content td{border:1px solid var(--nf-color-border);padding:.5rem;text-align:left;vertical-align:top}
+.md-content blockquote{margin:.75rem 0;padding:.5rem 1rem;border-left:3px solid var(--nf-color-border);background:#f9fbfc}
+.md-content hr{display:none}
+
+/* MDX body headings (distinct from page title) */
+.md-body h1{margin:1.25rem 0 .5rem;font-size:1.15rem;font-weight:700;padding-bottom:.25rem;border-bottom:1px solid var(--nf-color-border)}
+.md-body h2{margin:1.1rem 0 .5rem;font-size:1.05rem;padding-bottom:.2rem;border-bottom:1px solid var(--nf-color-border);color:var(--nf-color-brand);font-weight:700}
+.md-body h3{margin:1rem 0 .25rem;font-size:1rem;color:var(--nf-color-brand);font-weight:600}
+
+/* レスポンシブ対応 - 体系的なブレークポイント */
+/* 大画面タブレット */
+@media (max-width: 1024px) {
+  .container {
+    padding-left: max(var(--nf-space-6), 5vw, 20px) !important;
+    padding-right: max(var(--nf-space-6), 5vw, 20px) !important;
+  }
+  
+  .container-full {
+    padding-left: max(var(--nf-space-6), 5vw, 20px) !important;
+    padding-right: max(var(--nf-space-6), 5vw, 20px) !important;
+  }
+  
+  .story-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* タブレット */
+@media (max-width: 768px) {
+  .container {
+    padding-left: max(var(--nf-space-5), 6vw, 18px) !important;
+    padding-right: max(var(--nf-space-5), 6vw, 18px) !important;
+  }
+  
+  .container-full {
+    padding-left: max(var(--nf-space-5), 6vw, 18px) !important;
+    padding-right: max(var(--nf-space-5), 6vw, 18px) !important;
+  }
+}
+
+/* 中サイズ範囲（369px-769px）での余白強化 */
+@media (max-width: 769px) and (min-width: 369px) {
+  .container {
+    padding-left: max(var(--nf-space-6), 8vw, 22px) !important;
+    padding-right: max(var(--nf-space-6), 8vw, 22px) !important;
+  }
+  
+  .container-full {
+    padding-left: max(var(--nf-space-6), 8vw, 22px) !important;
+    padding-right: max(var(--nf-space-6), 8vw, 22px) !important;
+  }
+}
+
+/* 特に問題の多い範囲（500px-700px）をさらに強化 */
+@media (max-width: 700px) and (min-width: 500px) {
+  .container {
+    padding-left: max(var(--nf-space-8), 10vw, 28px) !important;
+    padding-right: max(var(--nf-space-8), 10vw, 28px) !important;
+  }
+  
+  .container-full {
+    padding-left: max(var(--nf-space-8), 10vw, 28px) !important;
+    padding-right: max(var(--nf-space-8), 10vw, 28px) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--nf-space-4) 0;
+  }
+  
+  .section-tight {
+    padding: var(--nf-space-6) 0;
+  }
+  
+  .card {
+    padding: var(--nf-space-3);
+  }
+  
+  .btn,
+  .btn-outline {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+  
+  .job-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+  }
+  
+  .job-title {
+    font-size: 0.95rem;
+  }
+  
+  .job-meta {
+    font-size: 0.875rem;
+  }
+  
+  .md-content h2 {
+    font-size: 1.15rem;
+  }
+  
+  .md-content h3 {
+    font-size: 1rem;
+  }
+  
+  .md-content table {
+    font-size: 0.875rem;
+  }
+  
+  .md-content th,
+  .md-content td {
+    padding: 0.375rem;
+  }
+}
+
+/* スマホ */
+@media (max-width: 480px) {
+  .container {
+    padding-left: max(var(--nf-space-4), 7vw, 16px) !important;
+    padding-right: max(var(--nf-space-4), 7vw, 16px) !important;
+  }
+  
+  .container-full {
+    padding-left: max(var(--nf-space-4), 7vw, 16px) !important;
+    padding-right: max(var(--nf-space-4), 7vw, 16px) !important;
+  }
+  
+  .section {
+    padding: var(--nf-space-3) 0;
+  }
+  
+  .section-tight {
+    padding: var(--nf-space-4) 0;
+  }
+  
+  .card {
+    padding: var(--nf-space-2);
+  }
+  
+  .btn,
+  .btn-outline {
+    padding: 0.5rem 0.625rem;
+    font-size: 0.8rem;
+  }
+  
+  .job-row {
+    padding: 0.625rem 0.75rem;
+  }
+  
+  .job-title {
+    font-size: 0.9rem;
+  }
+  
+  .job-meta {
+    font-size: 0.8rem;
+  }
+  
+  .md-content {
+    font-size: 0.9rem;
+  }
+  
+  .md-content h2 {
+    font-size: 1.1rem;
+  }
+  
+  .md-content h3 {
+    font-size: 0.95rem;
+  }
+  
+  .md-content ul,
+  .md-content ol {
+    padding-left: 1rem;
+  }
+}
+
+/* 小さいスマホ */
+@media (max-width: 375px) {
+  .container {
+    padding-left: max(var(--nf-space-3), 8vw, 14px) !important;
+    padding-right: max(var(--nf-space-3), 8vw, 14px) !important;
+  }
+  
+  .container-full {
+    padding-left: max(var(--nf-space-3), 8vw, 14px) !important;
+    padding-right: max(var(--nf-space-3), 8vw, 14px) !important;
+  }
+  
+  .card {
+    padding: var(--nf-space-3);
+  }
+  
+  .job-row {
+    padding: 0.75rem 1rem;
+  }
+  
+  .md-content ul,
+  .md-content ol {
+    padding-left: 1.25rem;
+  }
+}

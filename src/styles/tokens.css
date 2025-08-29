@@ -1,0 +1,23 @@
+:root{
+  --nf-font-sans: ui-sans-serif, system-ui, -apple-system, "Noto Sans JP", Arial, sans-serif;
+  --nf-color-bg:#ffffff;
+  --nf-color-surface:#f8fafc;
+  --nf-color-fg:#1f2937;
+  --nf-color-muted:#6b7280;
+  --nf-color-brand:#04666c;
+  --nf-color-border:#e5e7eb;
+
+  --nf-space-1:.25rem; --nf-space-2:.5rem; --nf-space-3:.75rem; --nf-space-4:1rem; --nf-space-6:1.5rem; --nf-space-8:2rem; --nf-space-12:3rem;
+
+  --nf-radius-sm:.375rem; --nf-radius-md:.5rem; --nf-radius-lg:.75rem; --nf-radius-xl:1rem;
+  --nf-shadow-sm:0 2px 8px rgba(0,0,0,.06); --nf-shadow-md:0 6px 18px rgba(0,0,0,.08);
+  --nf-container:1100px;
+  
+  /* レスポンシブ対応のためのブレークポイント */
+  --nf-breakpoint-sm: 480px;
+  --nf-breakpoint-md: 768px;
+  --nf-breakpoint-lg: 1024px;
+  --nf-breakpoint-xl: 1280px;
+}
+
+

@@ -1,0 +1,45 @@
+---
+import "../styles/global.css";
+import HeadSEO from "../components/HeadSEO.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import GA from "../components/GA.astro";
+const { title, description, canonical, jsonLd, noindex=false } = Astro.props;
+---
+<!doctype html>
+<html lang="ja">
+  <HeadSEO {title} {description} {canonical} {jsonLd} {noindex}>
+    <GA id="G-8D0QRH12F3" />
+  </HeadSEO>
+  <body>
+    <Header />
+    <main class="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .main-content {
+    min-height: 60vh;
+    margin: 0;
+    padding: var(--nf-space-8) 0;
+    width: 100%;
+  }
+
+  /* レスポンシブ対応 */
+  @media (max-width: 768px) {
+    .main-content {
+      padding: var(--nf-space-6) 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .main-content {
+      padding: var(--nf-space-4) 0;
+    }
+  }
+</style>
+
+

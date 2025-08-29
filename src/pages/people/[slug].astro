@@ -1,0 +1,24 @@
+---
+import Layout from "../../layouts/DefaultLayout.astro";
+import { getCollection, getEntryBySlug } from "astro:content";
+export async function getStaticPaths(){
+  const entries = await getCollection('people');
+  return entries.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const canonical = `https://careers.nanofrontier.jp/people/${entry.slug}`;
+---
+<Layout title={`${entry.data.title} | NanoFrontier`} description={entry.data.summary} {canonical}>
+  <section class="container" style="padding-block:var(--nf-space-8)">
+    <article class="item-row" style="border-top:1px solid var(--nf-color-border)">
+      <h1 style="margin:0 0 var(--nf-space-2)">{entry.data.title}</h1>
+      {entry.data.role && <p class="muted">{entry.data.role}</p>}
+    </article>
+    <article style="line-height:1.9">
+      <Content />
+    </article>
+  </section>
+</Layout>
+
+

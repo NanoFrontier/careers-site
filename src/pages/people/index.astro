@@ -1,0 +1,27 @@
+---
+import Layout from "../../layouts/DefaultLayout.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import { getCollection } from "astro:content";
+const title = "メンバーの声 | NanoFrontier";
+const description = "NanoFrontierで働くメンバーのストーリー";
+const canonical = "https://careers.nanofrontier.jp/people";
+const people = (await getCollection('people')).sort((a,b)=> (a.data.date < b.data.date ? 1 : -1));
+---
+<Layout {title} {description} {canonical}>
+  <section class="container" style="padding-block:var(--nf-space-8)">
+    <SectionHeading title="メンバーの声" subtitle="現場のリアルな視点をお届けします" />
+    <div style="display:grid;gap:var(--nf-space-8);grid-template-columns:repeat(auto-fill,minmax(320px,1fr));align-items:start">
+      {people.map(p => (
+        <a href={`/people/${p.slug}`} style="text-decoration:none;color:inherit">
+          {p.data.hero && <img src={p.data.hero} alt={p.data.title} style="width:100%;height:auto;border-radius:var(--nf-radius-lg);object-fit:cover" />}
+          {p.data.quote && <p style="margin:.75rem 0 0;line-height:1.8">{p.data.quote}</p>}
+          <p class="muted" style="margin:.5rem 0 0">{p.data.joined || p.data.date}</p>
+          <h3 style="margin:.25rem 0 0">{p.data.role || p.data.department}</h3>
+          <p class="muted" style="margin:.25rem 0 0">{p.slug.replace(/(^|-)\w/g, s=>s.toUpperCase()).replace(/-/g,'.')}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+
