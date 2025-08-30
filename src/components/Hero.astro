@@ -36,46 +36,73 @@ const {
 
   .heading-hero {
     font-size: clamp(2.4rem, 5vw, 3.6rem);
-    line-height: 1.1;
-    margin: 0 0 var(--nf-space-3);
+    line-height: 1.15;
+    margin: 0 0 var(--nf-space-4);
     font-weight: 800;
     letter-spacing: -0.02em;
   }
 
   .hero-subtitle {
     max-width: 60ch;
-    margin: 0;
+    margin: 0 0 var(--nf-space-2);
     font-size: 1.1rem;
     line-height: 1.6;
   }
 
   .hero-buttons {
-    margin-top: var(--nf-space-4);
+    margin-top: var(--nf-space-6);
     display: flex;
     gap: var(--nf-space-3);
     flex-wrap: wrap;
     align-items: center;
   }
 
-  /* モバイル対応 */
-  @media (max-width: 768px) {
+  /* 大画面タブレット対応 */
+  @media (max-width: 1024px) {
     .hero-container {
-      padding: var(--nf-space-8) var(--nf-space-4) var(--nf-space-6);
+      padding: var(--nf-space-12) var(--nf-space-6) var(--nf-space-8);
     }
 
     .heading-hero {
-      font-size: clamp(2rem, 8vw, 2.8rem);
+      font-size: clamp(2.2rem, 5.5vw, 3.2rem);
+      line-height: 1.2;
+      margin-bottom: var(--nf-space-4);
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      margin-bottom: var(--nf-space-3);
+    }
+
+    .hero-buttons {
+      margin-top: var(--nf-space-6);
+    }
+  }
+
+  /* タブレット対応 */
+  @media (max-width: 768px) {
+    .hero-container {
+      padding: var(--nf-space-12) var(--nf-space-4) var(--nf-space-8);
+    }
+
+    .heading-hero {
+      font-size: clamp(2rem, 7vw, 2.8rem);
+      line-height: 1.25;
+      margin-bottom: var(--nf-space-4);
     }
 
     .hero-subtitle {
       font-size: 1rem;
       max-width: 100%;
+      margin-bottom: var(--nf-space-4);
+      line-height: 1.65;
     }
 
     .hero-buttons {
+      margin-top: var(--nf-space-6);
       flex-direction: column;
       align-items: stretch;
-      gap: var(--nf-space-2);
+      gap: var(--nf-space-3);
     }
 
     .hero-buttons .btn,
@@ -85,13 +112,75 @@ const {
     }
   }
 
+  /* スマホ対応 */
   @media (max-width: 480px) {
     .hero-container {
-      padding: var(--nf-space-6) var(--nf-space-3) var(--nf-space-4);
+      padding: calc(var(--nf-space-12) * 1.2) var(--nf-space-4) var(--nf-space-12);
     }
 
     .heading-hero {
-      font-size: clamp(1.8rem, 10vw, 2.4rem);
+      font-size: clamp(1.8rem, 9vw, 2.4rem);
+      line-height: 1.4;
+      margin-bottom: var(--nf-space-8);
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      margin-bottom: var(--nf-space-8);
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      margin-top: calc(var(--nf-space-8) * 1.25);
+      gap: var(--nf-space-4);
+    }
+  }
+
+  /* 中サイズスマホ対応（379px-479px） */
+  @media (max-width: 479px) and (min-width: 379px) {
+    .hero-container {
+      padding: calc(var(--nf-space-12) * 1.1) var(--nf-space-4) var(--nf-space-12);
+    }
+
+    .heading-hero {
+      font-size: clamp(1.7rem, 9vw, 2.2rem);
+      line-height: 1.4;
+      margin-bottom: var(--nf-space-6);
+    }
+
+    .hero-subtitle {
+      font-size: 0.92rem;
+      margin-bottom: var(--nf-space-6);
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      margin-top: var(--nf-space-8);
+      gap: var(--nf-space-4);
+    }
+  }
+
+  /* 小さいスマホ対応 */
+  @media (max-width: 378px) {
+    .hero-container {
+      padding: var(--nf-space-12) var(--nf-space-3) var(--nf-space-8);
+    }
+
+    .heading-hero {
+      font-size: clamp(1.6rem, 10vw, 2rem);
+      line-height: 1.45;
+      margin-bottom: var(--nf-space-6);
+    }
+
+    .hero-subtitle {
+      font-size: 0.9rem;
+      margin-bottom: var(--nf-space-6);
+      line-height: 1.85;
+    }
+
+    .hero-buttons {
+      margin-top: var(--nf-space-8);
+      gap: var(--nf-space-4);
     }
   }
 </style>
