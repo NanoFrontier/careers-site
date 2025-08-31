@@ -118,11 +118,48 @@ const canonical = `https://careers.nanofrontier.jp/jobs/${slug}`;
     }
     
     const fabButton = document.getElementById('fab-button');
+    const fabContainer = document.querySelector('.fab-container');
+    const footer = document.querySelector('.footer');
+    
     if (fabButton) {
       fabButton.addEventListener('click', openApplyForm);
       console.log('FAB button event listener added');
     } else {
       console.log('FAB button not found');
+    }
+
+    // フッターとの重複を避けるためのスクロール監視
+    if (fabContainer && footer) {
+      function updateFabPosition() {
+        const footerRect = footer!.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const footerVisible = footerRect.top < windowHeight;
+        
+        if (footerVisible) {
+          const overlap = windowHeight - footerRect.top;
+          const newBottom = Math.max(footerRect.height + 24, overlap + 24);
+          (fabContainer as HTMLElement).style.bottom = `${newBottom}px`;
+          (fabContainer as HTMLElement).classList.add('above-footer');
+        } else {
+          (fabContainer as HTMLElement).style.bottom = '';
+          (fabContainer as HTMLElement).classList.remove('above-footer');
+        }
+      }
+
+      let ticking = false;
+      function onScroll() {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            updateFabPosition();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+
+      window.addEventListener('scroll', onScroll);
+      window.addEventListener('resize', updateFabPosition);
+      updateFabPosition();
     }
   });
 </script>
@@ -199,6 +236,11 @@ const canonical = `https://careers.nanofrontier.jp/jobs/${slug}`;
     bottom: var(--nf-space-8);
     right: var(--nf-space-8);
     z-index: 1000;
+    transition: bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .fab-container.above-footer {
+    /* フッター上での特別なスタイル（必要に応じて追加） */
   }
 
   .fab-container.center {

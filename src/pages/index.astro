@@ -96,9 +96,55 @@ const canonical = "https://careers.nanofrontier.jp";
 </Layout>
 
 {/* Floating CTA Button */}
-<div class="floating-cta">
+<div class="floating-cta" id="floating-cta">
   <a href="/jobs" class="btn cta-button">募集職種を見る</a>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const floatingCta = document.getElementById('floating-cta');
+    const footer = document.querySelector('.footer');
+    
+    if (!floatingCta || !footer) return;
+
+    function updateButtonPosition() {
+      const footerRect = footer!.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const buttonHeight = (floatingCta as HTMLElement).offsetHeight;
+      const footerVisible = footerRect.top < windowHeight;
+      
+      if (footerVisible) {
+        // フッターが見えている場合、ボタンをフッターの上に配置
+        const overlap = windowHeight - footerRect.top;
+        const newBottom = Math.max(footerRect.height + 16, overlap + 16);
+        (floatingCta as HTMLElement).style.bottom = `${newBottom}px`;
+        (floatingCta as HTMLElement).classList.add('above-footer');
+      } else {
+        // フッターが見えていない場合、通常の位置
+        (floatingCta as HTMLElement).style.bottom = '';
+        (floatingCta as HTMLElement).classList.remove('above-footer');
+      }
+    }
+
+    // スクロールイベントリスナー
+    let ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateButtonPosition();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll);
+    window.addEventListener('resize', updateButtonPosition);
+    
+    // 初期位置設定
+    updateButtonPosition();
+  });
+</script>
 
 <style>
   .about-content {
@@ -185,6 +231,11 @@ const canonical = "https://careers.nanofrontier.jp";
     z-index: 100;
     display: flex;
     justify-content: center;
+    transition: bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .floating-cta.above-footer {
+    /* フッター上での特別なスタイル（必要に応じて追加） */
   }
 
   .cta-button {
