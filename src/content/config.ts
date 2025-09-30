@@ -7,12 +7,13 @@ export const collections = {
       title: z.string(),
       location: z.string(),
       employmentType: z.enum(['FULL_TIME','PART_TIME','CONTRACT','INTERN']),
-      department: z.enum(['R&D','Engineering','Business','Sales','Corporate']).optional(),
+      department: z.enum(['R&D','Engineering','Business','Corporate']).optional(),
       description: z.string(),
       datePosted: z.string(),
       validThrough: z.string().optional(),
       identifier: z.string().optional(),
       tags: z.array(z.string()).optional(),
+      priority: z.enum(['high', 'medium', 'low']).optional(),
     })
   }),
   people: defineCollection({

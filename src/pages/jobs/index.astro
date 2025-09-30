@@ -5,14 +5,35 @@ import JobRow from "../../components/JobRow.astro";
 import Hero from "../../components/Hero.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 const allJobs = await getCollection('jobs');
-const jobs = allJobs.filter(j => j.id.startsWith('ja/')).sort((a,b)=> (a.data.datePosted < b.data.datePosted ? 1 : -1));
+const jobs = allJobs.filter(j => j.id.startsWith('ja/')).sort((a,b)=> {
+  // Priority order: high -> medium -> low -> undefined
+  const priorityOrder = { 'high': 3, 'medium': 2, 'low': 1, undefined: 0 };
+  const aPriority = priorityOrder[a.data.priority] || 0;
+  const bPriority = priorityOrder[b.data.priority] || 0;
+  
+  if (aPriority !== bPriority) {
+    return bPriority - aPriority; // Higher priority first
+  }
+  
+  // If same priority, sort by department order: R&D -> Engineering -> Business -> Corporate
+  const deptOrder = { 'R&D': 4, 'Engineering': 3, 'Business': 2, 'Corporate': 1, undefined: 0 };
+  const aDept = deptOrder[a.data.department] || 0;
+  const bDept = deptOrder[b.data.department] || 0;
+  
+  if (aDept !== bDept) {
+    return bDept - aDept; // Higher department order first
+  }
+  
+  // If same priority and department, sort by date (newer first)
+  return a.data.datePosted < b.data.datePosted ? 1 : -1;
+});
 ---
 <Layout title="募集一覧 | NanoFrontier" description="現在募集中の職種" canonical="https://careers.nanofrontier.jp/jobs">
   <Hero title="募集職種一覧" subtitle="部署別に募集中のポジションを掲載しています。" />
   <section class="container jobs-section">
     <SectionHeading title="すべての募集" />
     <div class="filter-buttons">
-      {['All','R&D','Engineering','Business','Sales','Corporate'].map(d => (
+      {['All','R&D','Engineering','Business','Corporate'].map(d => (
         <button class={`filter-btn ${d==='All' ? 'active' : ''}`} data-filter={d}>{d}</button>
       ))}
     </div>
